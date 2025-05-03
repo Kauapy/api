@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-// Caminho para o arquivo JSON relativo à raiz do projeto
 const caminhoArquivo = path.join(__dirname, '..', 'livros.json');
 
 function getTodosLivros() {
@@ -15,7 +14,16 @@ function getLivroPorId(id) {
   return livroFiltrado[0]; 
 }
 
+function insereLivro(livroNovo){
+  const livros = JSON.parse(fs.readFileSync(caminhoArquivo))
+
+  const novaListaDeLivros = [...livros, livroNovo]
+
+  fs.writeFileSync(caminhoArquivo, JSON.stringify(novaListaDeLivros, null, 2))
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorId,
+  insereLivro,
 };
