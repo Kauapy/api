@@ -1,9 +1,20 @@
-const { Router } = require('express');
+const { Router } = require("express");
+const { getLivros} = require("../controladores/livros.js")
 
-const router = Router()
+const router = Router();
 
-router.get("/", (req, res) => {
-    res.send("Hello World!")
+router.get("/", getLivros);
+
+router.post('/', (req, res) =>{
+    res.send("Você fez uma requisição POST")
 })
 
-module.exports = router
+router.patch('/', (req, res) =>{
+    res.send("Você fez uma requisição PATCH")
+})
+
+router.delete('/', (req, res) =>{
+    res.send("Você fez uma requisição DELETE")
+})
+
+module.exports = router;
