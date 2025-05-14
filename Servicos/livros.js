@@ -39,9 +39,20 @@ function modificaLivro(modificacoes, id) {
 
 }
 
+function deletarLivroPorId(id){
+  const livros = JSON.parse(fs.readFileSync(caminhoArquivo));
+  const idNumerico = parseInt(id);
+  const livroFiltrado = livros.filter(
+    (livro) => livro.id !== idNumerico
+  );
+
+  fs.writeFileSync(caminhoArquivo, JSON.stringify(livroFiltrado, null, 2));
+}
+
 module.exports = {
   getTodosLivros,
   getLivroPorId,
   insereLivro,
   modificaLivro,
+  deletarLivroPorId,
 };
